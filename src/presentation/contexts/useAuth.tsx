@@ -26,7 +26,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const api = new AxiosRequest();
 
-  const [user, setUser] = useState<AuthContextProps>();
+  const [user, setUser] = useState({});
 
   const toast = useToast();
   const router = useRouter();
@@ -49,7 +49,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   useEffect(() => {
     if (!token) unauthorizedUser();
     const decoded = jwtDecode(token) as AuthContextProps;
-    setUser(decoded);
+    setUser({ decoded, token });
   }, [token]);
 
   useEffect(() => {

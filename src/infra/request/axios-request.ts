@@ -12,16 +12,14 @@ export class AxiosRequest implements Request {
 
   async post(params: Request.RequestData<any>): Promise<any> {
     const headers: any = {};
-    if (params.bearerToken)
-      headers.Authorization = `Bearer ${params.bearerToken}`;
+    if (params.bearerToken) headers.Authorization = params.bearerToken;
     const data = this.parseData(params.data, params.dataAs || 'json');
     return this.instance.post(params.uri, data, { headers });
   }
 
   async put(params: Request.RequestData<any>): Promise<any> {
     const headers: any = {};
-    if (params.bearerToken)
-      headers.Authorization = `Bearer ${params.bearerToken}`;
+    if (params.bearerToken) headers.Authorization = params.bearerToken;
     const data = this.parseData(params.data, params.dataAs || 'json');
     return this.instance.post(params.uri, data, { headers }).then(response => {
       return response.data;
@@ -30,8 +28,7 @@ export class AxiosRequest implements Request {
 
   async get(params: Request.RequestData<any>): Promise<any> {
     const headers: any = {};
-    if (params.bearerToken)
-      headers.Authorization = `Bearer ${params.bearerToken}`;
+    if (params.bearerToken) headers.Authorization = params.bearerToken;
     return this.instance
       .get(params.uri, {
         headers,
@@ -44,8 +41,7 @@ export class AxiosRequest implements Request {
 
   async delete(params: Request.RequestData<any>): Promise<any> {
     const headers: any = {};
-    if (params.bearerToken)
-      headers.Authorization = `Bearer ${params.bearerToken}`;
+    if (params.bearerToken) headers.Authorization = params.bearerToken;
     return this.instance
       .delete(params.uri, {
         headers,

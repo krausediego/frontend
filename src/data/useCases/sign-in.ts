@@ -5,13 +5,13 @@ import { errorHandler } from './helpers/error-handle';
 export class SignIn implements ISignIn {
   constructor(
     private readonly request: Request,
-    private readonly signUpServiceUrl: string,
+    private readonly signInServiceUrl: string,
   ) {}
 
   public async signIn(data: ISignIn.Data): Promise<any> {
     try {
       const result = await this.request.post({
-        uri: `${this.signUpServiceUrl}`,
+        uri: `${this.signInServiceUrl}`,
         data,
       });
 

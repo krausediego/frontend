@@ -15,9 +15,7 @@ export class AxiosRequest implements Request {
     if (params.bearerToken)
       headers.Authorization = `Bearer ${params.bearerToken}`;
     const data = this.parseData(params.data, params.dataAs || 'json');
-    return this.instance.post(params.uri, data, { headers }).then(response => {
-      return response.data;
-    });
+    return this.instance.post(params.uri, data, { headers });
   }
 
   async put(params: Request.RequestData<any>): Promise<any> {

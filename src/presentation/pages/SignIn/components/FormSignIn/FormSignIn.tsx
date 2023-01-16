@@ -1,11 +1,12 @@
 import { ISignIn } from '@/domain/useCases';
 import { Button, Input } from '@/presentation/components';
 import { useSignInMutation } from '@/presentation/hooks';
-import { Heading, useToast, VStack } from '@chakra-ui/react';
+import { Heading, Link, Text, useToast, VStack } from '@chakra-ui/react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { FormSignInProps } from './types';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SignInSchema } from '@/presentation/schemas';
+import { useRouter } from 'next/router';
 
 export const FormSignIn = ({ service }: FormSignInProps) => {
   const {
@@ -16,8 +17,9 @@ export const FormSignIn = ({ service }: FormSignInProps) => {
     resolver: yupResolver(SignInSchema),
   });
 
-  const { mutateAsync, isError } = useSignInMutation({ service });
+  const { mutateAsync, isLoading } = useSignInMutation({ service });
   const toast = useToast();
+  const router = useRouter();
 
   const SubmitForm: SubmitHandler<ISignIn.Data> = async values => {
     try {
@@ -32,7 +34,6 @@ export const FormSignIn = ({ service }: FormSignInProps) => {
     } catch (err: any) {
       toast({
         title: 'Erro ao realizar o login.',
-        description: err,
         status: 'error',
         position: 'top',
         duration: 3000,
@@ -40,8 +41,6 @@ export const FormSignIn = ({ service }: FormSignInProps) => {
       });
     }
   };
-
-  console.log(isError);
 
   return (
     <VStack
@@ -58,12 +57,24 @@ export const FormSignIn = ({ service }: FormSignInProps) => {
       />
       <Input
         label="Senha"
+        type="password"
         errorMessage={errors?.password?.message}
         {...register('password')}
       />
-      <Button type="submit" fullWidth>
+      <Button isLoading={isLoading} type="submit" fullWidth>
         Entrar
       </Button>
+      <Text>
+        Ainda não possuí uma conta ?{' '}
+        <Link
+          color="teal"
+          onClick={() => {
+            return router.push('/signUp');
+          }}
+        >
+          Crie uma agora
+        </Link>
+      </Text>
     </VStack>
   );
 };

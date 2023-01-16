@@ -40,7 +40,8 @@
     "@typescript-eslint/strict-boolean-expressions": "off",
     "@typescript-eslint/no-namespace": "off",
     "@typescript-eslint/camelcase": "off",
-    "@typescript-eslint/no-shadow": ["error"],
+    "@typescript-eslint/no-shadow": ["off"],
+    "jsx-a11y/anchor-is-valid": ["off"],
     "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-empty-function": "off",
@@ -78,7 +79,7 @@
     // "object-curly-newline": ["error", { "minProperties": 4  }],
     "max-len": ["error", { "code": 300, "ignoreStrings": true  }],
     "arrow-body-style": ["error", "always"],
-    "prettier/prettier": "error"
+    "prettier/prettier": ["error", { "endOfLine": "auto" }]
   },
   "settings": {
     "import/resolver": {

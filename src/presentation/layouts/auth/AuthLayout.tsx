@@ -10,7 +10,7 @@ export const AuthLayout = ({ children }: AuthLayoutProps) => {
       alignItems="center"
       data-testid="auth-layout"
     >
-      <Box bg="gray.50" p={4} borderRadius={8} boxShadow="md">
+      <Box bg="gray.50" py={6} px={8} borderRadius={8} boxShadow="md">
         {children}
       </Box>
     </Flex>

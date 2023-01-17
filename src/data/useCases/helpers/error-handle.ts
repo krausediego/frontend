@@ -1,24 +1,20 @@
+import { AxiosError, AxiosResponse } from 'axios';
+
 export type Result = {
-  errors: any;
+  errors: any[];
+  data: null;
 };
 
-export const errorHandler = (
-  err: Result['errors'],
-  statusCode = 500,
-): Result => {
+export const errorHandler = (err: AxiosResponse, statusCode = 500): Result => {
   if (statusCode >= 400 && statusCode < 500) {
     if (statusCode === 403)
-      return { errors: ['Sessão expirada. Faça login novamente!!!'] };
-    const errorsList = err.response.data?.errors || [];
-    return {
-      errors: errorsList
-        ?.map((error: any) => {
-          return `- ${error.mensagem}`;
-        })
-        ?.slice(0, 10),
-    };
+      return {
+        errors: ['Sessão expirada. Faça login novamente!!!'],
+        data: null,
+      };
   }
   return {
-    errors: err.response.data,
+    errors: err?.data?.message || 'Erro inesperado.',
+    data: null,
   };
 };

@@ -8,16 +8,14 @@ export class GetCustomers implements ICustomers {
     private readonly getCustomersServiceUrl: string,
   ) {}
 
-  public async getCustomers({
-    user_id,
-    token,
-  }: ICustomers.Params): Promise<any> {
-    console.log('USER_ID', user_id);
-    console.log('TOKEN', token);
+  public async getCustomers({ user_id, token }: ICustomers.Params): Promise<{
+    errors: any[];
+    data: ICustomers.Data[] | null;
+  }> {
     try {
       const result = await this.request.get({
         uri: `${this.getCustomersServiceUrl}`,
-        data: user_id,
+        data: { user_id },
         bearerToken: token,
       });
 

@@ -1,3 +1,4 @@
+import { Content } from '@/presentation/components';
 import { AuthProvider } from '@/presentation/contexts';
 import { useCustomersQuery } from '@/presentation/hooks';
 import { CoreLayout } from '@/presentation/layouts';

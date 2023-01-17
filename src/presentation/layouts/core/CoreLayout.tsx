@@ -12,10 +12,18 @@ export const CoreLayout = ({ children, title }: CoreLayoutProps) => {
       data-testid="auth-layout"
     >
       <SideMenu />
-      <Flex w="85%" h="full" py={8} px={8} flexDir="column" gap={10}>
+      <Flex
+        w="85%"
+        h="full"
+        py={8}
+        px={8}
+        flexDir="column"
+        gap={10}
+        overflowY="auto"
+      >
         <Heading fontSize="1.6rem">{title}</Heading>
         <Divider borderBottomWidth={1} borderColor="gray.600" />
-        <Flex flexDir="column" w="full" h="full" overflowY="auto">
+        <Flex flexDir="column" w="full" h="full" px={28}>
           {children}
         </Flex>
       </Flex>

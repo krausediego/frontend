@@ -9,6 +9,7 @@ export namespace ICustomers {
   export type Params = {
     user_id: any;
     token: string;
+    search?: string;
   };
 
   export type Data = {

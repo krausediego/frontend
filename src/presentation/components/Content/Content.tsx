@@ -8,6 +8,7 @@ export const Content = ({ children }: ContentProps) => {
       p={8}
       bg="gray.50"
       borderRadius="md"
+      boxShadow="lg"
       flexDir="column"
       gap={4}
     >

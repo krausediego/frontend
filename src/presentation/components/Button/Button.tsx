@@ -10,6 +10,7 @@ export const Button = ({
   return (
     <ButtonComponent
       w={fullWidth ? 'full' : ''}
+      px={6}
       colorScheme={colorScheme || 'teal'}
       {...rest}
       data-testid="button-component"

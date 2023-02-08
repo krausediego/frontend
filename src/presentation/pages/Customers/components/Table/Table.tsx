@@ -2,6 +2,7 @@ import { Button, Content, Search, Table } from '@/presentation/components';
 import { useAuth } from '@/presentation/contexts';
 import { useCustomersQuery, useDebounce } from '@/presentation/hooks';
 import { Flex, Tbody, Th, Thead, Tr } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { MdAdd } from 'react-icons/md';
 import { BodyTable } from './Body';
@@ -12,6 +13,7 @@ export const TableCustomers = ({ service }: TableCustomersProps) => {
 
   const { decoded, token } = useAuth();
   const { debouncedValue, loading } = useDebounce(search, 5000);
+  const router = useRouter();
 
   const { data } = useCustomersQuery(
     service,
@@ -37,7 +39,14 @@ export const TableCustomers = ({ service }: TableCustomersProps) => {
           clearSearch={clearSearch}
           isLoading={loading}
         />
-        <Button leftIcon={<MdAdd size={20} />}>Adicionar cliente</Button>
+        <Button
+          onClick={() => {
+            return router.push('/createCustomer');
+          }}
+          leftIcon={<MdAdd size={20} />}
+        >
+          Adicionar cliente
+        </Button>
       </Flex>
       <Table>
         <Thead>
@@ -51,8 +60,10 @@ export const TableCustomers = ({ service }: TableCustomersProps) => {
             <Th color="gray.50" minW="80px">
               Celular
             </Th>
-            <Th color="gray.50">Status</Th>
-            <Th maxW="10px" />
+            <Th color="gray.50" minW="80px">
+              Status
+            </Th>
+            <Th />
           </Tr>
         </Thead>
         <Tbody>

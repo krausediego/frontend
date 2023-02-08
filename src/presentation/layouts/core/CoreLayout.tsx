@@ -1,8 +1,12 @@
-import { Divider, Flex, Heading } from '@chakra-ui/react';
+import { Divider, Flex, Heading, Icon } from '@chakra-ui/react';
 import { SideMenu } from './components';
 import { CoreLayoutProps } from './types';
+import { MdOutlineWest } from 'react-icons/md';
+import { useRouter } from 'next/router';
 
-export const CoreLayout = ({ children, title }: CoreLayoutProps) => {
+export const CoreLayout = ({ children, title, backRoute }: CoreLayoutProps) => {
+  const router = useRouter();
+
   return (
     <Flex
       w="full"
@@ -21,7 +25,17 @@ export const CoreLayout = ({ children, title }: CoreLayoutProps) => {
         gap={10}
         overflowY="auto"
       >
-        <Heading fontSize="1.6rem">{title}</Heading>
+        <Flex alignItems="center" gap={4}>
+          {backRoute && (
+            <MdOutlineWest
+              onClick={() => {
+                return router.back();
+              }}
+              size={30}
+            />
+          )}
+          <Heading fontSize="1.6rem">{title}</Heading>
+        </Flex>
         <Divider borderBottomWidth={1} borderColor="gray.600" />
         <Flex flexDir="column" w="full" h="full" px={28}>
           {children}

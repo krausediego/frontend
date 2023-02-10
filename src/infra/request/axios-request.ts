@@ -18,12 +18,11 @@ export class AxiosRequest implements Request {
   }
 
   async put(params: Request.RequestData<any>): Promise<any> {
+    console.log('CAIU NO PUT');
     const headers: any = {};
     if (params.bearerToken) headers.Authorization = params.bearerToken;
     const data = this.parseData(params.data, params.dataAs || 'json');
-    return this.instance.post(params.uri, data, { headers }).then(response => {
-      return response.data;
-    });
+    return this.instance.put(params.uri, data, { headers });
   }
 
   async get(params: Request.RequestData<any>): Promise<any> {

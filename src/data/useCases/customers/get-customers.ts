@@ -1,6 +1,6 @@
 import { ICustomers } from '@/domain/useCases';
-import { Request } from '../contracts';
-import { errorHandler } from './helpers/error-handle';
+import { Request } from '../../contracts';
+import { errorHandler } from '../helpers/error-handle';
 
 export class GetCustomers implements ICustomers {
   constructor(

@@ -4,21 +4,41 @@ import { MdModeEdit, MdDelete, MdClose, MdCheck } from 'react-icons/md';
 import { Flex, Td, Tr, useDisclosure } from '@chakra-ui/react';
 import { CustomerActions } from '../Actions';
 import { ModalViewCompleteCustomer } from '../ModalViewCompleteCustomer';
+import { useAuth } from '@/presentation/contexts';
+import { useEditCustomerMutation } from '@/presentation/hooks/customers/useEditCustomerMutation';
 
-export const BodyTable = ({ customer }: BodyTableProps) => {
+export const BodyTable = ({
+  customer,
+  editCustomerSerivce,
+}: BodyTableProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const {} = customer.address;
+  const { token } = useAuth();
+
+  const { mutateAsync, isLoading } = useEditCustomerMutation({
+    editCustomerSerivce,
+    token,
+  });
+
+  const handleEditStatus = async (status: boolean) => {
+    try {
+      const test = { ...customer, status: !status };
+      delete test.address;
+      await mutateAsync(test);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
-    <Tr onClick={onOpen} _hover={{ cursor: 'pointer' }}>
-      <Td>{customer.name}</Td>
-      <Td>{customer.email}</Td>
-      <Td>{customer.phone}</Td>
-      <Td>
+    <Tr _hover={{ cursor: 'pointer' }}>
+      <Td onClick={onOpen}>{customer.name}</Td>
+      <Td onClick={onOpen}>{customer.email}</Td>
+      <Td onClick={onOpen}>{customer.phone}</Td>
+      <Td onClick={onOpen}>
         <StatusBadge status={customer.status} />
       </Td>
-      <Td>
+      <Td maxW="120px">
         <Flex gap={2} w="full" justifyContent="end">
           <CustomerActions
             tooltipLabel="Editar cliente"
@@ -31,6 +51,10 @@ export const BodyTable = ({ customer }: BodyTableProps) => {
             aria-label="delete customer"
           />
           <CustomerActions
+            isLoading={isLoading}
+            onClick={() => {
+              return handleEditStatus(customer.status);
+            }}
             tooltipLabel={
               customer.status ? 'Inativar cliente' : 'Ativar cliente'
             }
@@ -38,7 +62,11 @@ export const BodyTable = ({ customer }: BodyTableProps) => {
             aria-label="change status customer"
           />
           {isOpen && (
-            <ModalViewCompleteCustomer isOpen={isOpen} onClose={onClose} />
+            <ModalViewCompleteCustomer
+              customer={customer}
+              isOpen={isOpen}
+              onClose={onClose}
+            />
           )}
         </Flex>
       </Td>

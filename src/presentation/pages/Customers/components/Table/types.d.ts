@@ -1,12 +1,12 @@
-import { ICustomers } from '@/domain/useCases';
-import { IAddress } from '@/domain/useCases/address';
-
-type address = IAddress.Data;
+import { ICustomers, IEditCustomer } from '@/domain/useCases';
 
 export type TableCustomersProps = {
-  service: ICustomers;
+  getCustomersSerivce: ICustomers;
+  editCustomerSerivce: IEditCustomer;
 };
 
 export type BodyTableProps = {
-  customer: ICustomers.Data & address;
+  customer: ICustomers.Data;
+  editCustomerSerivce: IEditCustomer;
+  handleEditStatus: (customer: ICustomers.Data, status: boolean) => void;
 };

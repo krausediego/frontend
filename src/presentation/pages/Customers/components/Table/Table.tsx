@@ -8,7 +8,10 @@ import { MdAdd } from 'react-icons/md';
 import { BodyTable } from './Body';
 import { TableCustomersProps } from './types';
 
-export const TableCustomers = ({ service }: TableCustomersProps) => {
+export const TableCustomers = ({
+  getCustomersSerivce,
+  editCustomerSerivce,
+}: TableCustomersProps) => {
   const [search, setSearch] = useState('');
 
   const { decoded, token } = useAuth();
@@ -16,7 +19,7 @@ export const TableCustomers = ({ service }: TableCustomersProps) => {
   const router = useRouter();
 
   const { data } = useCustomersQuery(
-    service,
+    getCustomersSerivce,
     decoded?.id,
     token,
     debouncedValue,
@@ -68,7 +71,13 @@ export const TableCustomers = ({ service }: TableCustomersProps) => {
         </Thead>
         <Tbody>
           {data?.data?.map(customer => {
-            return <BodyTable key={customer.id} customer={customer} />;
+            return (
+              <BodyTable
+                key={customer.id}
+                customer={customer}
+                editCustomerSerivce={editCustomerSerivce}
+              />
+            );
           })}
         </Tbody>
       </Table>

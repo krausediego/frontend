@@ -1,5 +1,6 @@
-import { ICustomers } from '@/domain/useCases';
+import { ICustomers, IEditCustomer } from '@/domain/useCases';
 
 export type CustomersProps = {
-  service: ICustomers;
+  getCustomersSerivce: ICustomers;
+  editCustomerSerivce: IEditCustomer;
 };

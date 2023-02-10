@@ -1,3 +1,5 @@
+import { IAddress } from '../address';
+
 export interface ICustomers {
   getCustomers({ user_id, token }: ICustomers.Params): Promise<{
     errors: any[];
@@ -16,16 +18,17 @@ export namespace ICustomers {
     id: string;
     user_id: string;
     address_id: string;
+    address: IAddress.Data;
     name: string;
     email: string;
     phone: string;
     status: boolean;
-    birth_date: Date;
-    genre: string;
-    cpf: string;
-    cnpj: string;
-    inscricao_estadual: string;
-    razao_social: string;
+    birth_date?: Date;
+    genre?: string;
+    cpf?: string;
+    cnpj?: string;
+    inscricao_estadual?: string;
+    razao_social?: string;
     created_at: Date;
     updated_at: Date;
   };

@@ -3,7 +3,7 @@ import { TableProps } from './types';
 
 export const Table = ({ children, ...rest }: TableProps) => {
   return (
-    <Box overflowY="auto" borderRadius="md">
+    <Box w="full" overflowY="auto" borderRadius="md">
       <TableComponent colorScheme="gray" variant="striped" {...rest}>
         {children}
       </TableComponent>

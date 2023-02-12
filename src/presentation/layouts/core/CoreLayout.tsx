@@ -1,4 +1,4 @@
-import { Divider, Flex, Heading, Icon } from '@chakra-ui/react';
+import { Divider, Flex, Heading, VStack } from '@chakra-ui/react';
 import { SideMenu } from './components';
 import { CoreLayoutProps } from './types';
 import { MdOutlineWest } from 'react-icons/md';
@@ -37,9 +37,9 @@ export const CoreLayout = ({ children, title, backRoute }: CoreLayoutProps) => {
           <Heading fontSize="1.6rem">{title}</Heading>
         </Flex>
         <Divider borderBottomWidth={1} borderColor="gray.600" />
-        <Flex flexDir="column" w="full" h="full" px={28}>
+        <VStack alignItems="start" w="full" h="full" px={28}>
           {children}
-        </Flex>
+        </VStack>
       </Flex>
     </Flex>
   );

@@ -1,18 +1,21 @@
-import { Flex } from '@chakra-ui/react';
+import { Flex, Heading, VStack } from '@chakra-ui/react';
 import { ContentProps } from './types';
 
-export const Content = ({ children }: ContentProps) => {
+export const Content = ({ children, title }: ContentProps) => {
   return (
-    <Flex
-      w="full"
-      p={8}
-      bg="gray.50"
-      borderRadius="md"
-      boxShadow="lg"
-      flexDir="column"
-      gap={4}
-    >
-      {children}
-    </Flex>
+    <VStack spacing={8} w="full" alignItems="start">
+      {!!title && <Heading fontSize="1.5rem">{title}</Heading>}
+      <Flex
+        w="full"
+        p={8}
+        bg="gray.50"
+        borderRadius="md"
+        boxShadow="lg"
+        flexDir="column"
+        gap={4}
+      >
+        {children}
+      </Flex>
+    </VStack>
   );
 };

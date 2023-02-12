@@ -4,7 +4,12 @@ import { CoreLayoutProps } from './types';
 import { MdOutlineWest } from 'react-icons/md';
 import { useRouter } from 'next/router';
 
-export const CoreLayout = ({ children, title, backRoute }: CoreLayoutProps) => {
+export const CoreLayout = ({
+  children,
+  title,
+  backRoute,
+  ...rest
+}: CoreLayoutProps) => {
   const router = useRouter();
 
   return (
@@ -37,7 +42,7 @@ export const CoreLayout = ({ children, title, backRoute }: CoreLayoutProps) => {
           <Heading fontSize="1.6rem">{title}</Heading>
         </Flex>
         <Divider borderBottomWidth={1} borderColor="gray.600" />
-        <VStack alignItems="start" w="full" h="full" px={28}>
+        <VStack {...rest} alignItems="start" w="full" h="full" px={28} mb={20}>
           {children}
         </VStack>
       </Flex>

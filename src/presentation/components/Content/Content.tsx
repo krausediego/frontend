@@ -3,7 +3,7 @@ import { ContentProps } from './types';
 
 export const Content = ({ children, title }: ContentProps) => {
   return (
-    <VStack spacing={8} w="full" alignItems="start">
+    <VStack spacing={3} w="full" alignItems="start">
       {!!title && <Heading fontSize="1.5rem">{title}</Heading>}
       <Flex
         w="full"

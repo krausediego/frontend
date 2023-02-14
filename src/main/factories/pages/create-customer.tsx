@@ -1,5 +1,10 @@
+import { AuthProvider } from '@/presentation/contexts';
 import { CreateCustomerPage } from '@/presentation/pages';
 
 export const CreateCustomerPageFactory = () => {
-  return <CreateCustomerPage />;
+  return (
+    <AuthProvider>
+      <CreateCustomerPage />
+    </AuthProvider>
+  );
 };

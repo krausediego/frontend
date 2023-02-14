@@ -13,37 +13,37 @@ export const CreateCustomerSchema = yup.object().shape({
   email: yup.string().email(MESSAGES.email),
   phone: yup.string().required(MESSAGES.required),
   birth_date: yup.date().when('$type', type => {
-    if (type === 'fisico') {
+    if (type === 'fisica') {
       return yup.date().typeError(MESSAGES.date).required(MESSAGES.required);
     }
     return yup.string();
   }),
   genre: yup.string().when('$type', type => {
-    if (type === 'fisico') {
+    if (type === 'fisica') {
       return yup.string().required(MESSAGES.required);
     }
     return yup.string();
   }),
   cpf: yup.string().when('$type', type => {
-    if (type === 'fisico') {
+    if (type === 'fisica') {
       return yup.string().required(MESSAGES.required);
     }
     return yup.string();
   }),
   cnpj: yup.string().when('$type', type => {
-    if (type === 'juridico') {
+    if (type === 'juridica') {
       return yup.string().required(MESSAGES.required);
     }
     return yup.string();
   }),
   inscricao_estadual: yup.string().when('$type', type => {
-    if (type === 'juridico') {
+    if (type === 'juridica') {
       return yup.string().required(MESSAGES.required);
     }
     return yup.string();
   }),
   razao_social: yup.string().when('$type', type => {
-    if (type === 'juridico') {
+    if (type === 'juridica') {
       return yup.string().required(MESSAGES.required);
     }
     return yup.string();

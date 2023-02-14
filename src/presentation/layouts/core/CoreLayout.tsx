@@ -42,7 +42,7 @@ export const CoreLayout = ({
           <Heading fontSize="1.6rem">{title}</Heading>
         </Flex>
         <Divider borderBottomWidth={1} borderColor="gray.600" />
-        <VStack {...rest} alignItems="start" w="full" h="full" px={28} mb={10}>
+        <VStack {...rest} alignItems="start" w="full" h="full" px={28}>
           {children}
         </VStack>
       </Flex>

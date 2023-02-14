@@ -10,7 +10,7 @@ import { CreateCustomerSchema } from '@/presentation/schemas';
 import { useEffect, useState } from 'react';
 
 export const CreateCustomerPage = () => {
-  const [type, setType] = useState('fisico');
+  const [type, setType] = useState<'fisica' | 'juridica'>('fisica');
 
   const { token } = useAuth();
 
@@ -44,7 +44,7 @@ export const CreateCustomerPage = () => {
       <Content title="Endereço:">
         <AddressForm />
       </Content>
-      <HStack w="full" justifyContent="end" spacing={4}>
+      <HStack w="full" justifyContent="end" spacing={4} pb={10}>
         <Button variant="link">Cancelar</Button>
         <Button onClick={handleSubmit(handleSubmitForm)}>Salvar</Button>
       </HStack>

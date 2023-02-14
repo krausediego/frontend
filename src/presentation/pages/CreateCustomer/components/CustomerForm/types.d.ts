@@ -3,8 +3,8 @@ import { ICustomers } from '@/domain/useCases';
 import { Dispatch, SetStateAction } from 'react';
 
 export interface CustomerFormProps {
-  setType: Dispatch<SetStateAction<string>>;
+  setType: Dispatch<SetStateAction<'fisica' | 'juridica'>>;
   register: UseFormRegister<ICustomers.Data>;
   formState: FormState<ICustomers.Data>;
-  type: string;
+  type: 'fisica' | 'juridica';
 }

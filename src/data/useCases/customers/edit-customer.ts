@@ -10,7 +10,7 @@ export class EditCustomer implements IEditCustomer {
 
   public async editCustomer({ data, token }: IEditCustomer.Params): Promise<{
     errors: any[];
-    data: IEditCustomer.Data[] | null;
+    data: { data: IEditCustomer.Data } | null;
   }> {
     try {
       const result = await this.request.put({

@@ -7,8 +7,6 @@ const MESSAGES = {
 };
 
 export const CreateCustomerSchema = yup.object().shape({
-  user_id: yup.string().required(MESSAGES.required),
-  address_id: yup.string().required(MESSAGES.required),
   name: yup.string().required(MESSAGES.required),
   email: yup.string().email(MESSAGES.email),
   phone: yup.string().required(MESSAGES.required),
@@ -28,24 +26,33 @@ export const CreateCustomerSchema = yup.object().shape({
     if (type === 'fisica') {
       return yup.string().required(MESSAGES.required);
     }
-    return yup.string();
+    return yup.string().nullable();
   }),
   cnpj: yup.string().when('$type', type => {
     if (type === 'juridica') {
       return yup.string().required(MESSAGES.required);
     }
-    return yup.string();
+    return yup.string().nullable();
   }),
   inscricao_estadual: yup.string().when('$type', type => {
     if (type === 'juridica') {
       return yup.string().required(MESSAGES.required);
     }
-    return yup.string();
+    return yup.string().nullable();
   }),
   razao_social: yup.string().when('$type', type => {
     if (type === 'juridica') {
       return yup.string().required(MESSAGES.required);
     }
-    return yup.string();
+    return yup.string().nullable();
+  }),
+  address: yup.object().shape({
+    cep: yup.string().nullable(),
+    address: yup.string().required(MESSAGES.required),
+    city: yup.string().required(MESSAGES.required),
+    district: yup.string().required(MESSAGES.required),
+    number: yup.number().nullable(),
+    reference: yup.string().nullable(),
+    uf: yup.string().required(MESSAGES.required),
   }),
 });

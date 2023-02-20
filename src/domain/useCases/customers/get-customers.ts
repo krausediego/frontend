@@ -1,9 +1,9 @@
-import { IAddress } from '../address';
+import { IAddress } from '../address/address';
 
 export interface ICustomers {
   getCustomers({ user_id, token }: ICustomers.Params): Promise<{
     errors: any[];
-    data: ICustomers.Data[] | null;
+    data: { data: ICustomers.Data[] } | null;
   }>;
 }
 

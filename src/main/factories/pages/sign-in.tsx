@@ -1,6 +1,6 @@
 import { SignIn } from '@/data/useCases';
 import { AxiosRequest } from '@/infra/request/axios-request';
-import { SignInPage } from '@/presentation/pages';
+import { SignInPage } from '@/presentation/pages/SignIn';
 
 export const SignInPageFactory = () => {
   return (

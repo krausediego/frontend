@@ -1,4 +1,4 @@
-import { CustomersPageFactory } from '@/main/factories';
+import { CustomersPageFactory } from '@/main/factories/pages/customer';
 
 const Customers = () => {
   return <CustomersPageFactory />;

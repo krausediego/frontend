@@ -14,7 +14,7 @@ export class GetCustomers implements ICustomers {
     search,
   }: ICustomers.Params): Promise<{
     errors: any[];
-    data: ICustomers.Data[] | null;
+    data: { data: ICustomers.Data[] } | null;
   }> {
     try {
       const result = await this.request.get({
@@ -23,7 +23,7 @@ export class GetCustomers implements ICustomers {
         bearerToken: token,
       });
 
-      return { errors: [], data: result || null };
+      return { errors: [], data: { data: result } || null };
     } catch (err: any) {
       return errorHandler(err, err?.response?.status);
     }

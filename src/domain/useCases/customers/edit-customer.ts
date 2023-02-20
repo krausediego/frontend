@@ -1,9 +1,9 @@
-import { IAddress } from '../address';
+import { IAddress } from '../address/address';
 
 export interface IEditCustomer {
   editCustomer({ data, token }: IEditCustomer.Params): Promise<{
     errors: any[];
-    data: IEditCustomer.Data[] | null;
+    data: { data: IEditCustomer.Data } | null;
   }>;
 }
 

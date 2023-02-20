@@ -1,4 +1,4 @@
-import { SignUpPageFactory } from '@/main/factories/pages';
+import { SignUpPageFactory } from '@/main/factories/pages/sign-up';
 
 const SignUp = () => {
   return <SignUpPageFactory />;

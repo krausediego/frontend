@@ -18,7 +18,7 @@ interface AuthContextProps {
   username: string;
 }
 
-const AuthContext = createContext(({} as any) || undefined);
+const AuthContext = createContext({} as any);
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
   const [cookie] = useCookies(['token']);

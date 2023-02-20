@@ -1,4 +1,4 @@
-import { Divider, Flex, Heading, VStack } from '@chakra-ui/react';
+import { Divider, Flex, Heading, VStack, Icon } from '@chakra-ui/react';
 import { SideMenu } from './components';
 import { CoreLayoutProps } from './types';
 import { MdOutlineWest } from 'react-icons/md';
@@ -32,11 +32,13 @@ export const CoreLayout = ({
       >
         <Flex alignItems="center" gap={4}>
           {backRoute && (
-            <MdOutlineWest
+            <Icon
+              as={MdOutlineWest}
               onClick={() => {
                 return router.back();
               }}
-              size={30}
+              cursor="pointer"
+              fontSize={30}
             />
           )}
           <Heading fontSize="1.6rem">{title}</Heading>

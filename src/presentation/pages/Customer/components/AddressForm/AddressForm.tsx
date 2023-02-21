@@ -1,16 +1,35 @@
 import { Input } from '@/presentation/components';
+import { useCEPQuery } from '@/presentation/hooks/utils/useCEPQuery';
 import { InputMask } from '@/presentation/utils';
 import { Stack } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 import { AddressFormProps } from './types';
 
 export const AddressForm = ({
   formState,
   register,
+  reset,
   getCEPService,
 }: AddressFormProps) => {
-  const { errors } = formState;
+  const [cep, setCep] = useState('');
 
+  const { errors } = formState;
   const masked = new InputMask();
+
+  const { data } = useCEPQuery({ getCEPService, cep });
+
+  useEffect(() => {
+    if (data?.data?.data) {
+      reset({
+        address: {
+          address: data.data.data.logradouro,
+          city: data.data.data.localidade,
+          district: data.data.data.bairro,
+          uf: data.data.data.uf,
+        },
+      });
+    }
+  }, [data, reset]);
 
   return (
     <Stack spacing={4}>
@@ -56,6 +75,7 @@ export const AddressForm = ({
           errorMessage={errors.address?.cep?.message}
           {...register('address.cep')}
           onChange={({ target }) => {
+            setCep(target.value);
             return (target.value = masked.cep(target.value));
           }}
         />

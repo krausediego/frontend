@@ -5,15 +5,19 @@ import isEmpty from 'lodash/isEmpty';
 
 interface CreateCustomerProps {
   customerService: ICreateCustomer & ICreateAddress;
+  user_id: string;
   token: string;
 }
 
 export const useCreateCustomerMutation = ({
   customerService,
+  user_id,
   token,
 }: CreateCustomerProps) => {
   return useMutation(
     async (customer: ICreateCustomer.Data) => {
+      customer.user_id = user_id;
+      customer.address!.user_id = user_id;
       const { data: addressData, errors: addressErrors } =
         await customerService.createAddress({
           data: customer.address!,

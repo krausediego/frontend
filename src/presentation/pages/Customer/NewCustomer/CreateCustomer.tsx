@@ -21,23 +21,25 @@ export const CreateCustomerPage = ({
   const toast = useToast();
   const router = useRouter();
 
-  const { register, handleSubmit, setValue, formState } =
-    useForm<ICustomers.Data>({
+  const { register, handleSubmit, formState, reset } = useForm<ICustomers.Data>(
+    {
       resolver: yupResolver(CreateCustomerSchema),
       context: { type },
-    });
+    },
+  );
 
   const { mutateAsync } = useCreateCustomerMutation({
     customerService,
+    user_id: decoded?.id,
     token,
   });
 
   useEffect(() => {
     if (!decoded) return;
-    setValue('user_id', decoded.id);
-    setValue('address.user_id', decoded.id);
-    setValue('status', true);
-  }, [decoded, setValue]);
+    reset({
+      status: true,
+    });
+  }, [decoded, reset]);
 
   const handleSubmitForm: SubmitHandler<ICustomers.Data> = async values => {
     try {
@@ -73,13 +75,20 @@ export const CreateCustomerPage = ({
       <Content title="Endereço:">
         <AddressForm
           formState={formState}
-          setValue={setValue}
+          reset={reset}
           register={register}
           getCEPService={customerService}
         />
       </Content>
       <HStack w="full" justifyContent="flex-end" spacing={4} pb={10}>
-        <Button variant="link">Cancelar</Button>
+        <Button
+          onClick={() => {
+            return router.push('/customers');
+          }}
+          variant="link"
+        >
+          Cancelar
+        </Button>
         <Button onClick={handleSubmit(handleSubmitForm)}>Salvar</Button>
       </HStack>
     </CoreLayout>

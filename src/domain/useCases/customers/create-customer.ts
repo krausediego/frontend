@@ -3,7 +3,7 @@ import { IAddress } from '../address/address';
 export interface ICreateCustomer {
   createCustomer({ data, token }: ICreateCustomer.Params): Promise<{
     errors: any[];
-    data: ICreateCustomer.Data[] | null;
+    data: { data: ICreateCustomer.Data[] } | null;
   }>;
 }
 

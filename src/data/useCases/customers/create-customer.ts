@@ -13,7 +13,7 @@ export class CreateCustomer implements ICreateCustomer {
     token,
   }: ICreateCustomer.Params): Promise<{
     errors: any[];
-    data: ICreateCustomer.Data[] | null;
+    data: { data: ICreateCustomer.Data[] } | null;
   }> {
     try {
       const result = await this.request.post({

@@ -85,7 +85,12 @@ export const EditCustomerPage = ({
         />
       </Content>
       <Content title="Endereço:">
-        <AddressForm formState={formState} register={register} />
+        <AddressForm
+          formState={formState}
+          register={register}
+          reset={reset}
+          getCEPService={customerService}
+        />
       </Content>
       <HStack w="full" justifyContent="flex-end" spacing={4} pb={10}>
         <Button variant="link">Cancelar</Button>

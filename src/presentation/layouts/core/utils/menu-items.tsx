@@ -1,5 +1,9 @@
 import { MenuItemsProps } from './types';
-import { MdDashboard, MdPeopleAlt } from 'react-icons/md';
+import {
+  MdDashboard,
+  MdPeopleAlt,
+  MdOutlineConstruction,
+} from 'react-icons/md';
 
 export const menuItems: MenuItemsProps[] = [
   {
@@ -13,5 +17,11 @@ export const menuItems: MenuItemsProps[] = [
     label: 'Clientes',
     route: '/customers',
     icon: MdPeopleAlt,
+  },
+  {
+    id: 3,
+    label: 'Matéria prima',
+    route: '/materia-prima',
+    icon: MdOutlineConstruction,
   },
 ];

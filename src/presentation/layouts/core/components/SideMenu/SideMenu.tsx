@@ -10,6 +10,7 @@ export const SideMenu = () => {
       bg="gray.50"
       flexDir="column"
       alignItems="center"
+      justifyContent="center"
       gap={3}
     >
       {menuItems.map(({ id, label, route, icon }) => {

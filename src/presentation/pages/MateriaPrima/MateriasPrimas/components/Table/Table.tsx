@@ -52,14 +52,15 @@ export const TableMateriasPrimas = ({
         <Thead>
           <Tr bg="teal">
             <Th color="gray.50" minW="225px">
-              ID
+              Nome
             </Th>
             <Th color="gray.50" minW="225px">
-              Nome
+              Quantidade
             </Th>
             <Th color="gray.50" minW="225px">
               Valor
             </Th>
+            <Th />
           </Tr>
         </Thead>
         <Tbody>

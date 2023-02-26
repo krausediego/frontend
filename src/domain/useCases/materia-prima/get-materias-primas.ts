@@ -13,7 +13,7 @@ export namespace IMateriasPrimas {
   };
 
   export type Data = {
-    id: number;
+    id: string;
     user_id: string;
     name: string;
     quantity: string;

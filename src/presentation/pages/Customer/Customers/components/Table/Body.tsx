@@ -2,7 +2,7 @@ import { BodyTableProps } from './types';
 import { StatusBadge } from '../StatusBadge';
 import { MdModeEdit, MdDelete, MdClose, MdCheck } from 'react-icons/md';
 import { Flex, Td, Tr, useDisclosure, useToast } from '@chakra-ui/react';
-import { CustomerActions } from '../Actions';
+import { Actions } from '../../../../../components/Actions';
 import { ModalViewCompleteCustomer } from '../ModalViewCompleteCustomer';
 import { useAuth } from '@/presentation/contexts';
 import { useEditCustomerMutation } from '@/presentation/hooks/customers/useEditCustomerMutation';
@@ -71,7 +71,7 @@ export const BodyTable = ({ customer, customerServices }: BodyTableProps) => {
       </Td>
       <Td maxW="120px">
         <Flex gap={2} w="full" justifyContent="end">
-          <CustomerActions
+          <Actions
             tooltipLabel="Editar cliente"
             icon={<MdModeEdit />}
             onClick={() => {
@@ -79,13 +79,13 @@ export const BodyTable = ({ customer, customerServices }: BodyTableProps) => {
             }}
             aria-label="edit customer"
           />
-          <CustomerActions
+          <Actions
             tooltipLabel="Excluir cliente"
             onClick={handleDeleteCustomer}
             icon={<MdDelete />}
             aria-label="delete customer"
           />
-          <CustomerActions
+          <Actions
             isLoading={isLoading}
             onClick={handleEditStatus}
             tooltipLabel={

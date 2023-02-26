@@ -1,7 +1,7 @@
 import { IconButton, Tooltip } from '@chakra-ui/react';
 import { CustomerActionsProps } from './types';
 
-export const CustomerActions = ({
+export const Actions = ({
   tooltipLabel,
   icon,
   ...rest

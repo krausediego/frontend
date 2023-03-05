@@ -30,6 +30,12 @@ export const useCreateCustomerMutation = ({
 
       delete customer.address;
 
+      console.log({
+        ...customer,
+        address_id: addressData!.data.id,
+        status: true,
+      });
+
       const { data, errors } = await customerService.createCustomer({
         data: { ...customer, address_id: addressData!.data.id, status: true },
         token,

@@ -24,12 +24,14 @@ export const useCreateCustomerMutation = ({
           token,
         });
 
-      customer.address_id = addressData?.data.id as string;
+      if (!addressData?.data.id) {
+        throw new Error('Error');
+      }
 
       delete customer.address;
 
       const { data, errors } = await customerService.createCustomer({
-        data: customer,
+        data: { ...customer, address_id: addressData!.data.id, status: true },
         token,
       });
 
